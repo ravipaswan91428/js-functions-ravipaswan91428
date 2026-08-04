@@ -62,4 +62,24 @@ export function calculateDosaOrder(type, quantity = 1, isSpicy = false) {
     }
 }
 
-console.log(calculateDosaOrder("masala", 2, true));
+console.log(calculateDosaOrder("plain"));
+console.log(calculateDosaOrder("masala"));
+console.log(calculateDosaOrder("onion"));
+console.log(calculateDosaOrder("butter"));
+console.log(calculateDosaOrder("paper"));
+console.log(calculateDosaOrder("cheese"));
+console.log(calculateDosaOrder("plain",1,true));
+console.log(calculateDosaOrder("masala",1,true));
+console.log(calculateDosaOrder("masala",1,false));
+console.log(calculateDosaOrder("masala",3));
+console.log(calculateDosaOrder("masala",2,true));
+console.log(calculateDosaOrder("cheese",5));
+console.log(calculateDosaOrder("butter",2,true));
+console.log(calculateDosaOrder("paneer"));
+console.log(calculateDosaOrder("plain",-2));
+console.log(calculateDosaOrder("plain",0));
+console.log(calculateDosaOrder(123));
+console.log(calculateDosaOrder(true));
+console.log(calculateDosaOrder(null));
+console.log(calculateDosaOrder(undefined));
+
