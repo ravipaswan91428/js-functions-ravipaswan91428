@@ -63,12 +63,41 @@ export const calcBattingAvg = (totalRuns, innings, notOuts = 0) => {
 
 export const isAllRounder = (battingAvg, economy) => {
   // Your code here
-  
+  if(battingAvg > 30 && economy < 8){
+    return true;
+  }else{
+    return false;
+  }
 };
 
 export const getPlayerCard = (player) => {
   // Your code here
+  if(!player || !player.name){
+    return null;
+  }
+  
+  const strikeRate = calcStrikeRate(player.runs,player.balls);
+  const economy = calcEconomy(player.runsConceded,player.overs);
+  const battingAvg = calcBattingAvg(player.totalRuns,player.innings,player.notOuts);
+
+  return {
+    name: player.name,
+    strikeRate,
+    economy,
+    battingAvg,
+    isAllRounder: isAllRounder(battingAvg, economy)
+  }
 };
+const player = ({
+  name: "Jadeja", 
+  runs: 35, 
+  balls: 20, 
+  totalRuns: 2000, 
+  innings: 80, 
+  notOuts: 10, 
+  runsConceded: 1500, 
+  overs: 200
+})
 
 console.log(calcStrikeRate(45,30));
 console.log(calcStrikeRate(100,60));
@@ -84,3 +113,8 @@ console.log(calcBattingAvg(2000,80,10));
 console.log(calcBattingAvg(1500, 50));
 console.log(calcBattingAvg(500, 10, 10));
 console.log(calcBattingAvg(500, 5, 10));
+console.log(isAllRounder(35, 7));
+console.log(isAllRounder(25, 7));
+console.log(isAllRounder(35, 9));
+console.log(isAllRounder(30, 8));
+console.log(getPlayerCard(player));
