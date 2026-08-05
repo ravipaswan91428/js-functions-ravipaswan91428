@@ -70,8 +70,35 @@ export function createTiffinPlan({ name, mealType = "veg", days = 30 } = {}) {
   }
 }
 
+  const plan1 = { name: 'Rahul', mealType: 'veg', days: 30, dailyRate: 80, totalCost: 2400 };
+  const plan2 = { name: 'Amit', mealType: 'nonveg', days: 15, dailyRate: 120, totalCost: 1800 };
+  const plan3 = { name: 'Priya', mealType: 'veg', days: 30, dailyRate: 80, totalCost: 2400 };
+
 export function combinePlans(...plans) {
   // Your code here
+
+  if(plans.length === 0){
+    return null;
+  }
+  const totalCustomers = plans.length;
+  let totalRevenue = 0;
+  let mealBreakdown = {};
+
+  for(const plan of plans){
+    totalRevenue += plan.totalCost;
+
+    if(mealBreakdown[plan.mealType]){
+      mealBreakdown[plan.mealType]++;
+    }
+    else{
+      mealBreakdown[plan.mealType] = 1;
+    }
+  }
+  return{
+    totalCustomers: plans.length,
+    totalRevenue,
+    mealBreakdown,
+  }
 }
 
 export function applyAddons(plan, ...addons) {
@@ -85,3 +112,8 @@ console.log(createTiffinPlan({ name: 'Neha', mealType: 'veg', days: 7 }));
 console.log(createTiffinPlan({ name: 'Test', mealType: 'keto' }));
 console.log(createTiffinPlan({ name: '', mealType: 'veg' }));
 console.log(createTiffinPlan());
+console.log(combinePlans(plan1, plan2));
+console.log(combinePlans(plan1, plan2, plan3));
+console.log(combinePlans(plan1, plan2, plan3));
+console.log(combinePlans());
+console.log(combinePlans(plan1));
