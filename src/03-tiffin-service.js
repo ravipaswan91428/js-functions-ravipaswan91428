@@ -41,6 +41,33 @@
  */
 export function createTiffinPlan({ name, mealType = "veg", days = 30 } = {}) {
   // Your code here
+  if(mealType !== "veg" && mealType !== "nonveg" && mealType !== 'jain'){
+    return null;
+  }
+  if(!name ){
+    return null;
+  }
+  let dailyRate;
+
+  if(mealType === 'veg'){
+    dailyRate = 80;
+  }
+  else if(mealType === 'nonveg'){
+    dailyRate = 120;
+  }
+  else{
+    dailyRate = 90;
+  }
+
+  const totalCost = dailyRate * days;
+
+  return {
+    name,
+    mealType,
+    days,
+    dailyRate,
+    totalCost
+  }
 }
 
 export function combinePlans(...plans) {
@@ -50,3 +77,11 @@ export function combinePlans(...plans) {
 export function applyAddons(plan, ...addons) {
   // Your code here
 }
+
+console.log(createTiffinPlan({ name: "Rahul" }));
+console.log(createTiffinPlan({ name: "Amit", mealType : 'nonveg', days : 15 }));
+console.log(createTiffinPlan({ name: 'Priya', mealType: 'jain', days: 10 }));
+console.log(createTiffinPlan({ name: 'Neha', mealType: 'veg', days: 7 }));
+console.log(createTiffinPlan({ name: 'Test', mealType: 'keto' }));
+console.log(createTiffinPlan({ name: '', mealType: 'veg' }));
+console.log(createTiffinPlan());
