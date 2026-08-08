@@ -46,6 +46,33 @@
  */
 export function createDialogueWriter(genre) {
   // Your code here
+  if(
+    genre !== 'action' &&
+    genre !== 'romance' &&
+    genre !== 'comedy' &&
+    genre !== 'drama'
+  ){
+    return null;
+  };
+
+  return(hero,villain)=>{
+    if(!hero || !villain){
+      return null;
+    }
+
+  if(genre === 'action'){
+    return `${hero} says: 'Tujhe toh main dekh lunga, ${villain}!'`;
+  };
+  if(genre === 'romance'){
+    return `${hero} whispers: '${villain}, tum mere liye sab kuch ho'`
+  };
+  if(genre === 'comedy'){
+    return `${hero} laughs: '${villain} bhai, kya kar rahe ho yaar!'`
+  };
+  if(genre === 'drama'){
+    return `${hero} cries: '${villain}, tune mera sab kuch cheen liya!'`
+  };
+};
 }
 
 export function createTicketPricer(basePrice) {
@@ -55,3 +82,18 @@ export function createTicketPricer(basePrice) {
 export function createRatingCalculator(weights) {
   // Your code here
 }
+
+const write = createDialogueWriter('action');
+// const write = createDialogueWriter('romance');
+// const write = createDialogueWriter('comedy');
+// const write = createDialogueWriter('drama');
+console.log(typeof createDialogueWriter('action'));
+console.log(write('SRK','Raees'));
+console.log(write('Raj','Simran'));
+console.log(write('Munna','Circuit'));
+console.log(write('Rahul','Anjali'));
+console.log((createDialogueWriter('horror')));
+console.log(write('', 'Raees'))
+console.log(write('SRK', ''))
+console.log(write(undefined, 'Raees'))
+console.log(write('SRK'));
