@@ -75,25 +75,62 @@ export function createDialogueWriter(genre) {
 };
 }
 
-export function createTicketPricer(basePrice) {
-  // Your code here
-}
-
-export function createRatingCalculator(weights) {
-  // Your code here
-}
-
 const write = createDialogueWriter('action');
 // const write = createDialogueWriter('romance');
 // const write = createDialogueWriter('comedy');
 // const write = createDialogueWriter('drama');
-console.log(typeof createDialogueWriter('action'));
-console.log(write('SRK','Raees'));
-console.log(write('Raj','Simran'));
-console.log(write('Munna','Circuit'));
-console.log(write('Rahul','Anjali'));
-console.log((createDialogueWriter('horror')));
-console.log(write('', 'Raees'))
-console.log(write('SRK', ''))
-console.log(write(undefined, 'Raees'))
-console.log(write('SRK'));
+
+// console.log(typeof createDialogueWriter('action'));
+// console.log(write('SRK','Raees'));
+// console.log(write('Raj','Simran'));
+// console.log(write('Munna','Circuit'));
+// console.log(write('Rahul','Anjali'));
+// console.log((createDialogueWriter('horror')));
+// console.log(write('', 'Raees'))
+// console.log(write('SRK', ''))
+// console.log(write(undefined, 'Raees'))
+// console.log(write('SRK'));
+
+export function createTicketPricer(basePrice) {
+  // Your code here
+  if(typeof basePrice !== 'number' || basePrice <= 0){
+    return null;
+  }
+
+  return function (seatType, isWeekend){
+    const multiplier = {
+      silver: 1,
+      gold: 1.5,
+      platinum: 2
+    }
+
+    if(!(seatType in multiplier)){
+      return null;
+    }
+
+    let price = basePrice * multiplier[seatType];
+
+    if(isWeekend){
+      price = price * 1.3;
+    }
+
+    return Math.round(price);
+  }
+}
+
+const pricer = createTicketPricer(200);
+
+// console.log(typeof createTicketPricer(200));
+// console.log(pricer('silver'));
+// console.log(pricer('gold'));
+// console.log(pricer('platinum'));
+// console.log(pricer('gold', true));
+// console.log(pricer('silver', true));
+// console.log(pricer('vip'));
+// console.log(createTicketPricer(-100));
+// console.log(createTicketPricer(0));
+
+
+export function createRatingCalculator(weights) {
+  // Your code here
+}
