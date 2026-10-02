@@ -133,4 +133,43 @@ const pricer = createTicketPricer(200);
 
 export function createRatingCalculator(weights) {
   // Your code here
+  if(typeof weights !== 'object' || weights === null){
+    return null;
+  }
+
+  return function (scores){
+    let total = 0;
+
+    for(const key in weights){
+
+      if(key in scores){
+        total += scores[key] * weights[key];
+      }
+    }
+
+    return Math.round(total*10)/10;
+  }
 }
+
+const weights = {
+  story: 0.5, 
+  acting: 0.5, 
+  direction: 0.2, 
+  music: 0.2
+};
+
+const scores = {
+  story: 7, 
+  acting: 8, 
+  direction: 7, 
+  music: 8
+}
+
+const calc = createRatingCalculator(weights);
+
+console.log(typeof createRatingCalculator(weights));
+console.log(calc(scores));
+console.log(calc(scores));
+console.log(createRatingCalculator(null));
+console.log(createRatingCalculator('bad'));
+console.log(createRatingCalculator(42));
