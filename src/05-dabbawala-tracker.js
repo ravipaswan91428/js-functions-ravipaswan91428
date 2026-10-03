@@ -50,4 +50,141 @@
  */
 export function createDabbawala(name, area) {
   // Your code here
+  let deliveries = [];
+  let nextId = 0;
+
+  return {
+    addDelivery(from,to){
+      if(!from || !to){
+        return -1;
+      }
+
+      nextId++;
+
+      const delivery = {
+        id: nextId,
+        from: from,
+        to: to,
+        status: "pending"
+      };
+
+      deliveries.push(delivery);
+
+      return nextId;
+    },
+
+    completeDelivery(id){
+      const delivery = deliveries.find(delivery => delivery.id === id );
+
+      if(!delivery || delivery.status === 'completed'){
+        return false;
+      }
+
+      delivery.status = 'completed';
+
+      return true;
+    },
+
+    getActiveDeliveries(){
+      const delivery = deliveries
+      .filter(delivery => delivery.status === 'pending')
+      .map(delivery => ({...delivery}));
+
+      return delivery;
+    },
+
+    getStatus(){
+      const total = deliveries.length;
+
+      const completed = deliveries.filter(delivery => delivery.status === 'completed')
+      .length;
+
+      const pending = deliveries.filter(delivery => delivery.status === 'pending')
+      .length;
+
+      const successRate = total === 0 ? "0.00%" : ((completed/total * 100).toFixed(2)+ "%");
+
+      return {
+        name,
+        area, 
+        total, 
+        completed, 
+        pending, 
+        successRate
+      }
+    },
+
+    reset(){
+      deliveries = [];
+      nextId = 0;
+
+      return true;
+    }
+  }
 }
+
+const ram = createDabbawala('Ram', 'Dadar');
+// const active = ram.getActiveDeliveries();
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.addDelivery('Bandra', 'CST'));
+// console.log(ram.addDelivery('Dadar', 'Parel'));
+// console.log(ram.addDelivery('', 'Churchgate'));
+// console.log(ram.addDelivery('Andheri', ''));
+// console.log(ram.addDelivery(undefined, 'Churchgate'));
+// console.log(ram.addDelivery('Andheri'));
+// console.log(ram.completeDelivery(1));
+// console.log(ram.completeDelivery(999));
+// console.log(ram.completeDelivery(1));
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.addDelivery('Bandra', 'CST'));
+// console.log(ram.completeDelivery(1));
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.completeDelivery(1));
+// console.log(ram.getActiveDeliveries());
+
+// console.log(ram.getActiveDeliveries());
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.addDelivery('Bandra', 'CST'));
+// console.log(ram.completeDelivery(1));
+
+const status = ram.getStatus();
+
+// console.log(status.name);
+// console.log(status.area);
+// console.log(status.total);
+// console.log(status.completed);
+// console.log(status.pending);
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.addDelivery('Bandra', 'CST'));
+// console.log(ram.completeDelivery(1));
+// console.log(ram.getStatus().successRate);
+
+// console.log(ram.getStatus().successRate);
+
+//SUCCESS RATE TEST CASE
+
+// console.log(ram.addDelivery('Bandra', 'CST'));
+// console.log(ram.completeDelivery(1));
+// console.log(ram.getStatus().successRate);
+
+//RESET TEST CASE
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.addDelivery('Bandra', 'CST'));
+
+// console.log(ram.reset());
+
+// console.log(ram.getStatus().total);
+// console.log(ram.getActiveDeliveries());
+
+console.log(ram.addDelivery('Andheri', 'Churchgate'));
+console.log(ram.addDelivery('Bandra', 'CST'));
+console.log(ram.reset());
+console.log(ram.addDelivery('Dadar', 'Parel'));
+
+console.log(ram.reset());
