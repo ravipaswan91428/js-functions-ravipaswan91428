@@ -182,9 +182,25 @@ const status = ram.getStatus();
 // console.log(ram.getStatus().total);
 // console.log(ram.getActiveDeliveries());
 
-console.log(ram.addDelivery('Andheri', 'Churchgate'));
-console.log(ram.addDelivery('Bandra', 'CST'));
-console.log(ram.reset());
-console.log(ram.addDelivery('Dadar', 'Parel'));
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.addDelivery('Bandra', 'CST'));
+// console.log(ram.reset());
+// console.log(ram.addDelivery('Dadar', 'Parel'));
 
-console.log(ram.reset());
+// console.log(ram.reset());
+
+// console.log(ram.addDelivery('Andheri', 'Churchgate'));
+// console.log(ram.deliveries);
+// console.log((ram.nextId));
+
+// const shyam = createDabbawala('Shyam', 'Andheri');
+// console.log(ram.addDelivery('A', 'B'));
+// console.log(ram.addDelivery('C', 'D'));
+// console.log(shyam.addDelivery('X', 'Y'));
+// console.log(ram.getStatus().total);
+// console.log(shyam.getStatus().total);
+
+const shyam = createDabbawala('Shyam', 'Andheri');
+console.log(ram.addDelivery('C', 'D'));
+console.log(ram.addDelivery('A', 'B'));
+console.log(shyam.addDelivery('X', 'Y'));
