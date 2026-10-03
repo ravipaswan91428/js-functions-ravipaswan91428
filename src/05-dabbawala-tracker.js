@@ -200,7 +200,7 @@ const status = ram.getStatus();
 // console.log(ram.getStatus().total);
 // console.log(shyam.getStatus().total);
 
-const shyam = createDabbawala('Shyam', 'Andheri');
-console.log(ram.addDelivery('C', 'D'));
-console.log(ram.addDelivery('A', 'B'));
-console.log(shyam.addDelivery('X', 'Y'));
+// const shyam = createDabbawala('Shyam', 'Andheri');
+// console.log(ram.addDelivery('C', 'D'));
+// console.log(ram.addDelivery('A', 'B'));
+// console.log(shyam.addDelivery('X', 'Y'));
