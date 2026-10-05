@@ -47,7 +47,46 @@
  */
 export function processGuests(guests, filterFn) {
   // Your code here
+  if(!Array.isArray(guests) || typeof filterFn !== 'function'){
+    return [];
+  }
+
+  return guests.filter(filterFn);
 }
+
+// TEST CASES
+// const guests = [
+//   { name: 'Rahul', side: 'bride', rsvp: 'yes' },
+//   { name: 'Priya', side: 'groom', rsvp: 'no' },
+//   { name: 'Amit', side: 'bride', rsvp: 'yes' },
+//   { name: 'Neha', side: 'groom', rsvp: 'yes' },
+//   { name: 'Vikram', side: 'bride', rsvp: 'no' },
+// ];
+
+// const brideGuests = processGuests(guests, (g) => g.side === 'bride');
+// console.log(brideGuests);
+// console.log(brideGuests.every((g)=>g.side === 'bride'));
+
+// const attendGuest = processGuests(guests,(g) => g.rsvp === 'yes');
+// console.log(attendGuest);
+
+// const unknown = processGuests(guests, (g) => g.side === 'unknown');
+// console.log(unknown);
+
+// console.log(processGuests('not-array', () => true));
+// console.log(processGuests(null, () => true));
+
+// console.log(processGuests(guests, 'not-a-function'));
+// console.log(processGuests(guests, null));
+
+// let callCount = 0
+
+// processGuests(guests, (g) => {
+//   callCount++;
+//   return g.rsvp === 'yes';
+// });
+
+// console.log(callCount);
 
 export function notifyGuests(guests, notifyCallback) {
   // Your code here
