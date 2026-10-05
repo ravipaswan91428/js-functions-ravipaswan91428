@@ -55,22 +55,22 @@ export function processGuests(guests, filterFn) {
 }
 
 // TEST CASES
-// const guests = [
-//   { name: 'Rahul', side: 'bride', rsvp: 'yes' },
-//   { name: 'Priya', side: 'groom', rsvp: 'no' },
-//   { name: 'Amit', side: 'bride', rsvp: 'yes' },
-//   { name: 'Neha', side: 'groom', rsvp: 'yes' },
-//   { name: 'Vikram', side: 'bride', rsvp: 'no' },
-// ];
+const guests = [
+  { name: 'Rahul', side: 'bride', rsvp: 'yes' },
+  { name: 'Priya', side: 'groom', rsvp: 'no' },
+  { name: 'Amit', side: 'bride', rsvp: 'yes' },
+  { name: 'Neha', side: 'groom', rsvp: 'yes' },
+  { name: 'Vikram', side: 'bride', rsvp: 'no' },
+];
 
-// const brideGuests = processGuests(guests, (g) => g.side === 'bride');
+const brideGuests = processGuests(guests, (g) => g.side === 'bride');
 // console.log(brideGuests);
 // console.log(brideGuests.every((g)=>g.side === 'bride'));
 
-// const attendGuest = processGuests(guests,(g) => g.rsvp === 'yes');
+const attendGuest = processGuests(guests,(g) => g.rsvp === 'yes');
 // console.log(attendGuest);
 
-// const unknown = processGuests(guests, (g) => g.side === 'unknown');
+const unknown = processGuests(guests, (g) => g.side === 'unknown');
 // console.log(unknown);
 
 // console.log(processGuests('not-array', () => true));
@@ -90,7 +90,31 @@ export function processGuests(guests, filterFn) {
 
 export function notifyGuests(guests, notifyCallback) {
   // Your code here
+  if(!Array.isArray(guests) || typeof notifyCallback !== 'function'){
+    return [];
+  }
+
+  return guests.map(notifyCallback);
+
 }
+
+// TEST CASES
+
+// const results = notifyGuests(guests, (g) => `Notified ${g.name}`);
+// console.log(results);
+
+// const results = notifyGuests(guests, (g) => g.name)
+// console.log(results)
+// console.log(notifyGuests(42, (g) => g.name))
+// console.log(notifyGuests(guests, undefined))
+
+// let callCount = 0;
+// notifyGuests(guests, (g)=>{
+//   callCount++;
+//   return g.name;
+// })
+
+// console.log(callCount);
 
 export function handleRSVP(guest, onAccept, onDecline) {
   // Your code here
