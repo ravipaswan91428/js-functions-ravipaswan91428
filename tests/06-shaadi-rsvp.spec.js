@@ -19,27 +19,27 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
       const brideGuests = processGuests(guests, (g) => g.side === 'bride');
       expect(brideGuests).toHaveLength(3);
       expect(brideGuests.every((g) => g.side === 'bride')).toBe(true);
-    });
+    }); // DONE
 
     test('filters by rsvp status', () => {
       const accepted = processGuests(guests, (g) => g.rsvp === 'yes');
       expect(accepted).toHaveLength(3);
-    });
+    }); //DONE
 
     test('returns empty array when no matches', () => {
       const result = processGuests(guests, (g) => g.side === 'unknown');
       expect(result).toEqual([]);
-    });
+    }); //DONE
 
     test('non-array guests returns []', () => {
       expect(processGuests('not-array', () => true)).toEqual([]);
       expect(processGuests(null, () => true)).toEqual([]);
-    });
+    }); //DONE
 
     test('non-function filterFn returns []', () => {
       expect(processGuests(guests, 'not-a-function')).toEqual([]);
       expect(processGuests(guests, null)).toEqual([]);
-    });
+    }); //DONE
 
     test('callback is actually called for each guest', () => {
       let callCount = 0;
@@ -48,8 +48,8 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         return g.rsvp === 'yes';
       });
       expect(callCount).toBe(guests.length);
-    });
-  });
+    }); //DONE
+  }); // COMPLETED
 
   describe('notifyGuests', () => {
     test('collects callback return values into array', () => {
