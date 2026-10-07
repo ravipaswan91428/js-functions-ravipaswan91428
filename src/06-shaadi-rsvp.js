@@ -118,8 +118,74 @@ export function notifyGuests(guests, notifyCallback) {
 
 export function handleRSVP(guest, onAccept, onDecline) {
   // Your code here
+  if(!guest || 
+      typeof guest === "undefined" ||
+      typeof onAccept !== 'function' || 
+      typeof onDecline !== 'function'){
+    return null;
+  }
+
+  if(guest.rsvp === 'yes'){
+    return onAccept(guest);
+  }
+
+  if(guest.rsvp === 'no'){
+    return onDecline(guest);
+  }
+  return null;
+  
 }
+
+// const guest = {
+//   name: "Amit",
+//   rsvp: "yes"
+// }
+
+// const guest = {
+//   name: "Priya",
+//   rsvp: "no"
+// }
+
+// const guest = { 
+//   name: 'Test', 
+//   rsvp: 'maybe' 
+// };
+
+// (handleRSVP(null, () => {}, () => {}))
+
+// handleRSVP((undefined, () => {}, () => {}));
+// const guest = { name: 'Test', rsvp: 'yes' };
+// console.log(handleRSVP(guest, 'not-fn', () => {}));
+// console.log(handleRSVP(guest, () => {}, 'not-fn'));
+
+// let acceptCalled = false;
+// const guest = { name: 'Test', rsvp: 'yes' };
+// handleRSVP(guest,
+//   ()=> {acceptCalled = true;
+//     return "OK";
+//   },
+//   () => "No"
+// )
+// console.log(acceptCalled);
+
+// let declineCalled = false;
+// const guest = { name: 'Test', rsvp: 'no' };
+// handleRSVP(guest,
+//   ()=> "Yes",
+//   () => { declineCalled = true;
+//     return "No";
+//   }
+// )
+// console.log(declineCalled);
+
+// const result = handleRSVP(guest,
+//   (g) => `${g.name} is comming`,
+//   (g) => `${g.name} declined`
+// );
+
+// console.log(result);
 
 export function transformGuestList(guests, ...transformFns) {
   // Your code here
+  
 }

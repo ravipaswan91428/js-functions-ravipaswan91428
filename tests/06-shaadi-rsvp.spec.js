@@ -61,20 +61,20 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         'Notified Neha',
         'Notified Vikram',
       ]);
-    });
+    });// DONE
 
     test('returns correct number of results', () => {
       const results = notifyGuests(guests, (g) => g.name);
       expect(results).toHaveLength(5);
-    });
+    });// DONE
 
     test('non-array guests returns []', () => {
       expect(notifyGuests(42, (g) => g.name)).toEqual([]);
-    });
+    });// DONE
 
     test('non-function callback returns []', () => {
       expect(notifyGuests(guests, undefined)).toEqual([]);
-    });
+    });// DONE
 
     test('callback is called for each guest', () => {
       let callCount = 0;
@@ -83,8 +83,8 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         return g.name;
       });
       expect(callCount).toBe(guests.length);
-    });
-  });
+    });// DONE
+  }); // COMPLETED
 
   describe('handleRSVP', () => {
     test('calls onAccept when rsvp is "yes"', () => {
@@ -95,7 +95,7 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         (g) => `${g.name} declined`
       );
       expect(result).toBe('Amit is coming!');
-    });
+    }); //DONE
 
     test('calls onDecline when rsvp is "no"', () => {
       const guest = { name: 'Priya', rsvp: 'no' };
@@ -105,7 +105,7 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         (g) => `${g.name} declined`
       );
       expect(result).toBe('Priya declined');
-    });
+    }); //DONE
 
     test('returns null for other rsvp values', () => {
       const guest = { name: 'Test', rsvp: 'maybe' };
@@ -115,21 +115,21 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         (g) => `${g.name} declined`
       );
       expect(result).toBeNull();
-    });
+    }); //DONE
 
     test('null guest returns null', () => {
       expect(handleRSVP(null, () => {}, () => {})).toBeNull();
-    });
+    }); //DONE
 
     test('undefined guest returns null', () => {
       expect(handleRSVP(undefined, () => {}, () => {})).toBeNull();
-    });
+    }); //DONE
 
     test('non-function callbacks return null', () => {
       const guest = { name: 'Test', rsvp: 'yes' };
       expect(handleRSVP(guest, 'not-fn', () => {})).toBeNull();
       expect(handleRSVP(guest, () => {}, 'not-fn')).toBeNull();
-    });
+    }); //DONE
 
     test('onAccept is actually called (tracked)', () => {
       let acceptCalled = false;
@@ -140,7 +140,7 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         () => 'no'
       );
       expect(acceptCalled).toBe(true);
-    });
+    }); //DONE
 
     test('onDecline is actually called (tracked)', () => {
       let declineCalled = false;
@@ -151,8 +151,8 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
         () => { declineCalled = true; return 'no'; }
       );
       expect(declineCalled).toBe(true);
-    });
-  });
+    }); //DONE
+  }); // COMPLETED
 
   describe('transformGuestList', () => {
     test('applies single transform function', () => {
