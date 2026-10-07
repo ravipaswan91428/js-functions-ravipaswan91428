@@ -187,5 +187,35 @@ export function handleRSVP(guest, onAccept, onDecline) {
 
 export function transformGuestList(guests, ...transformFns) {
   // Your code here
-  
+  if(!Array.isArray(guests)){
+    return [];
+  }
+
+  let result = guests
+  for(const transformFn of transformFns){
+    result = transformFn(result);
+  }
+
+  return result
 }
+
+// const filterBride = (arr) => arr.filter((g)=> g.side === "bride");
+// const result = transformGuestList(guests, filterBride)
+// console.log(result);
+
+// const filterAccepted = (arr) => arr.filter((g)=>g.rsvp === "yes");
+// const sortByName = (arr) => [...arr].sort((a,b)=> a.name.localeCompare(b.name));
+// const result = transformGuestList(guests, filterAccepted, sortByName);
+// console.log(result);
+
+// const filterBride = (arr) => arr.filter((g)=>g.side==="bride");
+// const getNames = (arr) => arr.map((g)=> g.name);
+// const result = transformGuestList(guests, filterBride, getNames);
+// console.log(result);
+
+// const result = transformGuestList(guests);
+// console.log(result);
+
+console.log(transformGuestList(null, (arr)=> arr));
+console.log(transformGuestList("bad", (arr)=> arr));
+console.log(transformGuestList([],(arr)=>arr.filter((g)=>g.rsvp==="yes")));

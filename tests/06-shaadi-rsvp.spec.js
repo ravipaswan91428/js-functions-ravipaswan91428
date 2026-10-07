@@ -159,7 +159,7 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
       const filterBride = (arr) => arr.filter((g) => g.side === 'bride');
       const result = transformGuestList(guests, filterBride);
       expect(result).toHaveLength(3);
-    });
+    }); //DONE
 
     test('applies multiple transforms in left-to-right order', () => {
       const filterAccepted = (arr) => arr.filter((g) => g.rsvp === 'yes');
@@ -169,28 +169,28 @@ describe('06 - Shaadi RSVP Manager: Callbacks (9 pts)', () => {
       expect(result[0].name).toBe('Amit');
       expect(result[1].name).toBe('Neha');
       expect(result[2].name).toBe('Rahul');
-    });
+    }); //DONE
 
     test('filter then map — applied in order', () => {
       const filterBride = (arr) => arr.filter((g) => g.side === 'bride');
       const getNames = (arr) => arr.map((g) => g.name);
       const result = transformGuestList(guests, filterBride, getNames);
       expect(result).toEqual(['Rahul', 'Amit', 'Vikram']);
-    });
+    }); //DONE
 
     test('no transform functions returns original array', () => {
       const result = transformGuestList(guests);
       expect(result).toHaveLength(5);
-    });
+    }); //DONE
 
     test('non-array guests returns []', () => {
       expect(transformGuestList(null, (arr) => arr)).toEqual([]);
       expect(transformGuestList('bad', (arr) => arr)).toEqual([]);
-    });
+    }); //DONE
 
     test('empty guests array works correctly', () => {
       const result = transformGuestList([], (arr) => arr.filter((g) => g.rsvp === 'yes'));
       expect(result).toEqual([]);
-    });
-  });
+    }); //DONE
+  }); // COMPLETED
 });
